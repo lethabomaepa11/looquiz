@@ -13,9 +13,9 @@ function Login() {
         className="hidden lg:flex w-2/4 h-screen"
         alt="picture"/>
     <div className="flex min-h-screen flex-col items-center lg:items-end justify-center mr-0 lg:mr-20">
-        
+    
       <form className="flex-col  rounded-xl p-10 justify-center bg-base-200">
-      <h1 className="text-lg text-center font-bold ">Login to LooQuiz</h1>
+      <h1 className="text-2xl mb-10 text-center">Login to LooQuiz</h1>
         <section className="flex-col">
             
         <label className="form-control w-full max-w-xs">
