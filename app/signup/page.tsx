@@ -11,11 +11,11 @@ function Signup() {
 
     <main className="flex justify-center lg:justify-between">
         <Image
-        src={"/looquix.png"}
+        src={"/logoLooQuiz-removebg-preview.png"}
         width={200}
         height={200}
         className="hidden lg:flex w-2/4 h-screen"
-        alt="picture"/>
+        alt="logo"/>
 
     <div className="flex min-h-screen flex-col items-center lg:items-end justify-center mr-0 lg:mr-20">
       <form className="flex-col  rounded-xl p-10 justify-center bg-base-200">

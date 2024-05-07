@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Header({onClick,isVisible}: any) {
   return (
-    <header className="text-white w-full max-h-fit ">
+    <header className="text-white w-full max-h-fit">
         <div className="navbar bg-base-700">
         <div className="flex-none -mx-2 lg:hidden" onClick={onClick}>
           
@@ -25,6 +25,7 @@ function Header({onClick,isVisible}: any) {
             <Link className="btn btn-square btn-primary px-10 text-white" href="/signup">Signup</Link>
         </div>
         </div>
+        <hr className="bg-slate-900"/>
     </header>
   )
 }

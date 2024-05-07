@@ -4,7 +4,7 @@ import React from 'react'
 const Card = () => {
 
   return (
-<div className="card  w-full md:w-72 bg-base-100 shadow-xl md:m-5">
+<div className="card  w-full md:w-72 bg-base-200 lg:bg-base-100 shadow-xl mt-5 md:m-5">
     <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
     <div className="card-body">
         <h2 className="card-title text-white">
@@ -14,7 +14,7 @@ const Card = () => {
         <Link href="/j.doe12" className='text-xs text-slate-100 hover:underline'>John Doe</Link>
         <p className='text-sm'>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions w-full">
-        <button className='btn btn-square w-full btn-primary '>Try this quiz</button>
+        <Link href="/quiz/12" className='btn btn-square w-full btn-primary '>Try this quiz</Link>
         </div>
     </div>
 </div>
