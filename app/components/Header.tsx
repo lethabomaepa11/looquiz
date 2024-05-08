@@ -25,7 +25,7 @@ function Header({onClick,isVisible}: any) {
             <Link className="btn btn-square btn-primary px-10 text-white" href="/signup">Signup</Link>
         </div>
         </div>
-        <hr className="bg-slate-900"/>
+        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"/>
     </header>
   )
 }

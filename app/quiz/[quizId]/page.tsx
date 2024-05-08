@@ -1,33 +1,45 @@
 'use client'
+import Quiz from '@/app/components/Quiz'
+import TryQuizPrompt from '@/app/components/TryQuizPrompt'
 import Link from 'next/link'
 import { Router } from 'next/router'
-import React from 'react'
+import {useState,useEffect} from 'react'
+import QuizData from '@/app/components/QuizData'
 
 
-const page = () => {
+const QuizView = () => {
+
+  const [view, setview] = useState(-1);
+
+  function handleContinue()
+  {
+    setview(prevView => 
+      {
+        console.log(prevView)
+        return (++prevView);
+      }
+    )
+  }
+  function prevClick()
+  {
+    setview(prevView => 
+      {
+        return (--prevView);
+      }
+    )
+  }
+  
+  
+
   return (
     <div className='flex justify-center items-center'>
-<div className="card  w-full md:w-2/4 bg-base-100  md:m-5">
-    <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-    <div className="card-body">
-        <h2 className="card-title text-white">
-        Topic of the Quiz
-        </h2>
-        <Link href="/j.doe12" className='text-xs text-slate-100 hover:underline'>John Doe</Link>
-        <p className='text-sm'>Click Continue to attempt this quiz</p>
-        <div className="card-actions w-full">
-        
-        </div>
+      {view == -1 && <TryQuizPrompt onClick={handleContinue}/>}
+      {(view >= 0) && <Quiz view={view}
+      onClick={handleContinue}
+      prev={prevClick}/>}
     </div>
-    <div className='flex space-x-2 justify-center items-center'>
-      <Link href="/" className='btn btn-square w-2/5 px-5 btn-error bottom-0 text-white'>Cancel</Link>
-      <Link href="#" className='btn btn-square w-2/5 px-5 btn-primary bottom-0'>Continue</Link>
-    </div>
-    
-</div>
-</div>
 
   )
 }
 
-export default page
+export default QuizView
