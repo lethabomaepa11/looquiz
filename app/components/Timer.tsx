@@ -1,22 +1,32 @@
 'use client'
-import {useState}from 'react'
+import { useRouter } from 'next/navigation';
+import {useState, useEffect}from 'react';
 
 const Timer = ({time}: any) => {
 
-    const [timeRemaining, setTimeRemaining] = useState(time*6000)//60seconds for a minute
-    setInterval( () =>
-    {
-        let current = (timeRemaining/time)*100;
+    
 
-        setTimeRemaining(prevtime => {
-            return (prevtime-1000)
-        })
-        //document.getElementById("timer").style.width = `${current}%`;
-        console.log(current);
-    },1000)
+
+  const [seconds, setSeconds] = useState(0);
+
+    const router = useRouter();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds + 1);
+      seconds == time*60 && router.push("/")
+      document.getElementById("timer").style.width =`${(seconds/(time*60))*100}%`
+    }, 1000);
+
+    //
+    return () => {
+        clearInterval(intervalId);
+        
+        };
+        });
+
   return (
-    <div className='btn-square btn-ghost w-full rounded-2xl h-10 bg-base-300'>
-        <div id="timer" className='w-2/4 rounded-2xl h-10 bg-blue-500'>
+    <div className='btn-square btn-ghost w-full rounded-2xl h-10 bg-base-300 overflow-hidden'>
+        <div id="timer" className='rounded-2xl h-10 bg-blue-500'>
         </div>
       </div>
   )

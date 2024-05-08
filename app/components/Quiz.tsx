@@ -10,25 +10,25 @@ const Quiz = ({view,onClick,prev}: any) => {
   const question = quiz_data[0].questions[view];
 
   return (
-    <div className='w-full md:w-2/4 items-start card flex-col text-white  pl-5 pt-5'>
-      <Timer time={10}/>
+    <div className='w-full items-start card flex-col text-white  pl-5 pt-5'>
+      
       <h1 className='btn btn-square btn-ghost w-fit text-2xl mb-10'>{quiz_data[0].topic}</h1>
       <h1 className='text-lg font-bold mb-5'>Question {view+1}</h1>
       <h1 className='text-base'>{question.text}</h1>
      
-      <label  className='my-3'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
+      <label  className='my-3 btn-ghost btn-square btn px-5 w-fit'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
        A: {question.answers.a}
       </label>
       
-      <label className='my-3'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
+      <label className='my-3 btn-ghost btn-square btn px-5 w-fit'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
        B: {question.answers.b}
       </label>
             
-      <label className='my-3'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
+      <label className='my-3 btn-ghost btn-square btn px-5 w-fit'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
        C: {question.answers.c}
       </label>
 
-      <label className='my-3'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
+      <label className='my-3 btn-ghost btn-square btn px-5 w-fit'><input type='radio' className='radio-primary mr-3' value={question.answers.a} name="answers"/>
        D: {question.answers.d}
       </label>     
       <div className='flex w-full justify-around'>

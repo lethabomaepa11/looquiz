@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Router } from 'next/router'
 import {useState,useEffect} from 'react'
 import QuizData from '@/app/components/QuizData'
+import Timer from '@/app/components/Timer'
 
 
 const QuizView = () => {
@@ -33,10 +34,16 @@ const QuizView = () => {
 
   return (
     <div className='flex justify-center items-center'>
+      
+      
+      <div className='w-full md:w-2/4 flex-col justify-between items-center'>
       {view == -1 && <TryQuizPrompt onClick={handleContinue}/>}
-      {(view >= 0) && <Quiz view={view}
-      onClick={handleContinue}
-      prev={prevClick}/>}
+        {view >= 0 && <Timer time={1}/>}
+        {(view >= 0) && <Quiz view={view}
+        onClick={handleContinue}
+        prev={prevClick}/>}
+      </div>
+      
     </div>
 
   )

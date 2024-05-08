@@ -3,7 +3,7 @@ import ContinueBtn from "./ContinueBtn"
 
 const TryQuizPrompt = ({onClick}: any) => {
   return (
-    <div className="card  w-full md:w-2/4 bg-base-100  md:m-5">
+    <div className="card  w-full bg-base-100  md:m-5">
         
         <figure className='flex-col justify-center items-center'>
         <h2 className="card-title text-white my-2 ">
