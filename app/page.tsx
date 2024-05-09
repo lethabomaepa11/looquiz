@@ -1,13 +1,14 @@
 'use client'
 import Image from "next/image";
 import Header from "./components/Header";
-import React from "react";
+import {useState, useEffect} from "react";
 import SideNav from "./components/SideNav";
 import Feed from "./components/Feed";
 
 
 export default function Home() {
-  const [isVisible, setisVisible] = React.useState(false);
+  const [isVisible, setisVisible] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true)
 
   function toggleSideNav(){
     setisVisible(prevIsVisible => {return !prevIsVisible})
@@ -17,10 +18,13 @@ export default function Home() {
       {/*main page/homepage*/}
       <Header 
       onClick={toggleSideNav}
-      isVisible={isVisible}/>
+      isVisible={isVisible}
+      isLoggedIn={isLoggedIn}/>
+
       <section className="flex justify-between items-start">
         <SideNav isVisible={isVisible}/>
-        {!isVisible&&<Feed/>}
+        {!isVisible&&<Feed 
+        isLoggedIn={isLoggedIn}/>}
         
       </section>
       

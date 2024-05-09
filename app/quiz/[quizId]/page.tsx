@@ -29,6 +29,10 @@ const QuizView = () => {
       }
     )
   }
+
+  function displayModal(){
+    document.getElementById('my_modal_5').showModal();
+  }
   
   
 
@@ -38,12 +42,26 @@ const QuizView = () => {
       
       <div className='w-full md:w-2/4 flex-col justify-between items-center'>
       {view == -1 && <TryQuizPrompt onClick={handleContinue}/>}
-        {view >= 0 && <Timer time={1}/>}
+        {view >= 0 && <Timer time={1}
+        displayModal={displayModal}/>}
         {(view >= 0) && <Quiz view={view}
         onClick={handleContinue}
-        prev={prevClick}/>}
+        prev={prevClick}
+        displayModal={displayModal}/>}
       </div>
-      
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">You have completed this quiz!</h3>
+          <p className="py-4">Click the button below to close</p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <Link className="btn btn-square" href="/">Close</Link>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
 
   )

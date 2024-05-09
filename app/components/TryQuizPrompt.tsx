@@ -13,7 +13,9 @@ const TryQuizPrompt = ({onClick}: any) => {
         <div className="card-body">
         
             <Link href="/j.doe12" className='text-xs text-slate-100 hover:underline'>John Doe</Link>
-            <p className='text-sm'>Click Continue to attempt this quiz.</p>
+            <p className='text-sm'>Click Continue to attempt this quiz.{/**if this is timed quiz, it'll tell here */}
+            This is a timed Quiz limited to 1 minute, should 1 minute pass, you will be redirected to the homepage or the starting point
+            and your work will be automatically submitted and graded</p>
             <div className="card-actions w-full">
             
             </div>

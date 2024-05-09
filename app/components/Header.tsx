@@ -1,8 +1,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus
+} from "@fortawesome/free-solid-svg-icons";
 
-function Header({onClick,isVisible}: any) {
+
+function Header({onClick,isVisible,isLoggedIn}: any) {
   return (
     <header className="text-white w-full max-h-fit">
         <div className="navbar bg-base-700">
@@ -20,10 +25,22 @@ function Header({onClick,isVisible}: any) {
           <Image src="/logoLooQuiz-removebg-preview.png" height={50} width={50} alt="logo"/>
             <a className="btn btn-ghost text-xl -ml-6">LooQuiz</a>
         </div>
-        <div className="flex-none px-5">
+        {
+          !isLoggedIn ?<div className="flex-none px-5">
+        
             <Link className="btn btn-square btn-neutral text-white px-10 mx-3" href="/login">Login</Link>
             <Link className="btn btn-square btn-primary px-10 text-white" href="/signup">Signup</Link>
+            </div>
+        :
+        <div className="flex-none px-5">
+          <button className="btn btn-circle btn-outline mr-5 text-xl text-white">
+          <FontAwesomeIcon
+          icon={faPlus}/>
+          </button>
+          <Link href="/userid" className="btn btn-circle btn-accent">LM</Link>
         </div>
+        
+        }
         </div>
         <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"/>
     </header>
