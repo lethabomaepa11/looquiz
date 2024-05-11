@@ -33,7 +33,7 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
             </div>
         :
         <div className="flex-none px-5">
-          <button className="btn btn-circle btn-outline mr-5 text-xl text-white">
+          <button className="btn btn-circle  mr-5 text-xl text-white">
           <FontAwesomeIcon
           icon={faPlus}/>
           </button>
