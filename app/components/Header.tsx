@@ -33,10 +33,10 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
             </div>
         :
         <div className="flex-none px-5">
-          <button className="btn btn-circle  mr-5 text-xl text-white">
+          <Link href='/create' className="btn btn-circle  mr-5 text-xl text-white">
           <FontAwesomeIcon
           icon={faPlus}/>
-          </button>
+          </Link>
           <Link href="/userid" className="btn btn-circle btn-accent">LM</Link>
         </div>
         

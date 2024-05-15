@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-image: url("/public/looquix.png");
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfileCard from '../components/ProfileCard'
+import ProfileQuizCard from '../components/ProfileQuizCard'
 
 const page = () => {
   return (
@@ -10,8 +11,23 @@ const page = () => {
         <h1 className='text-white font-bold'>Profile Info</h1>
       </div>
       </main>
-      <div className='card md:w-2/5 h-screen bg-base-200 mt-3 p-5'>
-        <h1 className='text-white font-bold'>Quizzes</h1>
+      <div className='card md:w-2/5 h-screen bg-base-200 mt-3 p-5 '>
+        <h1 className='text-white font-bold'>Lethabo's Quizzes</h1>
+        <section className='overflow-auto'>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+          <ProfileQuizCard/>
+        </section>
+        
       </div>
       
       

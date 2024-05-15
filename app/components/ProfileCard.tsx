@@ -1,4 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCard = () => {
   return (
@@ -28,6 +33,11 @@ const ProfileCard = () => {
         
         <div className='flex justify-evenly items-center mt-5'>
           <button className='btn btn-primary text-white px-10'>Follow</button>
+
+          
+          <Link href='/create' className="btn btn-primary text-white">
+            Create new Quiz
+          </Link>
           <button className='btn btn-neutral px-5'>Edit Profile</button>
         </div>
       </div>
