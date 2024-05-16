@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import {useState, useEffect}from 'react';
 import Link from 'next/link';
 
-const Timer = ({time,displayModal}: any) => {
+const Timer = ({time,displayModal}) => {
 
     
 

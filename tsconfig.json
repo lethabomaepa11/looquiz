@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/create/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/create/page.jsx", "app/components/QuizInfo.jsx", "app/quiz/[quizId]/page.jsx", "app/components/Timer.jsx"],
   "exclude": ["node_modules"]
 }
