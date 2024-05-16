@@ -5,7 +5,6 @@ import Image from "next/image"
 
 
 function Signup() {
-    let width = window.screen.width;
 
   return (
 
