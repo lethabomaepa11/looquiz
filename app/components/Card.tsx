@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Card = ({isLoggedIn}:boolean) => {
+const Card = ({isLoggedIn}:any) => {
 
   return (
 <div className="card  w-full md:w-72 bg-base-200 lg:bg-base-100 shadow-xl mt-5 md:m-5">
