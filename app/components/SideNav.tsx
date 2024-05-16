@@ -5,7 +5,7 @@ function SideNav({isVisible} : any) {
   return (
     <div className={`${isVisible?'flex':'hidden'} lg:flex`}>
       
-      <ul className="menu bg-base-200 lg:w-56 w-screen h-screen">
+      <ul className="menu  lg:w-56 w-screen h-screen overflow-y-scroll">
       <h1 className="text-2xl text-white font-bold">Menu</h1>
         <li><a>Available Quizzes</a></li>
         <li>

@@ -10,7 +10,7 @@ import {
 function Header({onClick,isVisible,isLoggedIn}: any) {
   return (
     <header className="text-white w-full max-h-fit">
-        <div className="navbar bg-base-700">
+        <div className="navbar bg-base-200 ">
         <div className="flex-none -mx-2 lg:hidden" onClick={onClick}>
           
             <button className="btn btn-square btn-ghost">
@@ -23,7 +23,7 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
         </div>
         <div className="-mx-2 flex-1">
           <Image src="/logoLooQuiz-removebg-preview.png" height={50} width={50} alt="logo"/>
-            <a className="btn btn-ghost text-xl -ml-6">LooQuiz</a>
+            <a className="btn btn-ghost text-2xl -ml-6">LooQuiz</a>
         </div>
         {
           !isLoggedIn ?<div className="flex-none px-5">
@@ -33,7 +33,7 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
             </div>
         :
         <div className="flex-none px-5">
-          <Link href='/create' className="btn btn-circle  mr-5 text-xl text-white">
+          <Link href='/create' className="btn btn-circle btn-ghost  mr-5 text-xl text-white">
           <FontAwesomeIcon
           icon={faPlus}/>
           </Link>
@@ -42,7 +42,7 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
         
         }
         </div>
-        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"/>
+        
     </header>
   )
 }

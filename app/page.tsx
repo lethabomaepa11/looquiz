@@ -14,14 +14,14 @@ export default function Home() {
     setisVisible(prevIsVisible => {return !prevIsVisible})
   }
   return (
-    <main className="min-h-screen flex-col justify-between">
+    <main className="min-h-screen flex-col justify-between bg-base-300">
       {/*main page/homepage*/}
       <Header 
       onClick={toggleSideNav}
       isVisible={isVisible}
       isLoggedIn={isLoggedIn}/>
 
-      <section className="flex justify-between items-start">
+      <section className="flex justify-between items-start bg-base-200">
         <SideNav isVisible={isVisible}/>
         {!isVisible&&<Feed 
         isLoggedIn={isLoggedIn}/>}
