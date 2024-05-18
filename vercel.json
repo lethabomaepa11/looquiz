@@ -1,10 +1,6 @@
 {
     "builds": [
       {
-        "src": "vercel-build.js", 
-        "use": "@vercel/npm" 
-      },
-      {
         "src": "prisma", 
         "use": "@prisma/cli", 
         "config": {
