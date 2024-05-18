@@ -6,6 +6,7 @@ import Timer from './Timer';
 
 
 
+
 const Quiz = ({view,onClick,prev,displayModal}: any) => {
   const question = quiz_data[0].questions[view];
 

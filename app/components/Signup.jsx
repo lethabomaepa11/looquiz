@@ -1,23 +1,12 @@
-'use client'
+"use client"
 import Link from "next/link"
-import Image from "next/image"
+import { signup } from "../actions/auth"
 
-
-
-function Signup() {
-
+const SignUp = () => {
+    
   return (
-
-    <main className="flex justify-center lg:justify-between">
-        <Image
-        src={"/logoLooQuiz-removebg-preview.png"}
-        width={200}
-        height={200}
-        className="hidden lg:flex w-2/4 h-screen"
-        alt="logo"/>
-
-    <div className="flex min-h-screen flex-col items-center lg:items-end justify-center mr-0 lg:mr-20">
-      <form className="flex-col  rounded-xl p-10 justify-center bg-base-200">
+    
+    <form action={signup} className="flex-col  rounded-xl p-10 justify-center bg-base-200">
       <h1 className="text-2xl mb-10 text-center">Signup to LooQuiz</h1>
         <section className="flex-col">
             
@@ -25,7 +14,7 @@ function Signup() {
             <div className="label">
                 <span className="label-text">Enter your email</span>
             </div>
-            <input type="text" placeholder="looquiz11@email.com" className="input input-bordered w-full" />
+            <input required type="text" id="email" name="email" placeholder="looquiz11@email.com" className="input input-bordered w-full" />
             <div className="label">
                 <span className="label-text-alt text-error">Error here</span>
             </div>
@@ -34,7 +23,7 @@ function Signup() {
             <div className="label">
                 <span className="label-text">Create Username</span>
             </div>
-            <input type="text" placeholder="looquiz_11" className="input input-bordered w-full" />
+            <input required id="username" name="username" type="text" placeholder="looquiz_11" className="input input-bordered w-full" />
             <div className="label">
                 <span className="label-text-alt text-error">Error here</span>
             </div>
@@ -44,7 +33,7 @@ function Signup() {
                 <span className="label-text">Create Password</span>
             </div>
 
-            <input type="password" placeholder="***" className="input input-bordered w-96 max-w-xs" />
+            <input required name="password" id="password" type="password" placeholder="*********" className="input input-bordered w-96 max-w-xs" />
             <div className="label ">
                 <span className="label-text-alt text-error">Error here</span>
             </div>
@@ -53,9 +42,7 @@ function Signup() {
         </section>
         <Link className="link link-primary underline"href="/login">Already have an account? Login here.</Link>
       </form>
-    </div>
-    </main>
   )
 }
 
-export default Signup
+export default SignUp

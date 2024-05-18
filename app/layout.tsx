@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import {config} from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false;
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Roboto({ weight:"400",subsets:["latin"] });
 
 export const metadata: Metadata = {
   title: "LooQuiz: Quiz App",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         {children}
         </body>
     </html>

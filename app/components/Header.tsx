@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 
-function Header({onClick,isVisible,isLoggedIn}: any) {
+function Header({onClick,isVisible,isLoggedIn,username}: any) {
   return (
     <header className="text-white w-full max-h-fit">
         <div className="navbar bg-base-200 ">
@@ -37,7 +37,7 @@ function Header({onClick,isVisible,isLoggedIn}: any) {
           <FontAwesomeIcon
           icon={faPlus}/>
           </Link>
-          <Link href="/userid" className="btn btn-circle btn-accent">LM</Link>
+          <Link href={`/${username}`} className="btn btn-circle btn-accent">{String(username).charAt(0).toUpperCase()}</Link>
         </div>
         
         }
