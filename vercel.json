@@ -1,0 +1,16 @@
+{
+    "builds": [
+      {
+        "src": "vercel-build.js", 
+        "use": "@vercel/node" 
+      },
+      {
+        "src": "prisma", 
+        "use": "@prisma/cli", 
+        "config": {
+          "buildCommand": "npx prisma generate" 
+        }
+      }
+    ]
+  }
+  
