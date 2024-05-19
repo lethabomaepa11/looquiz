@@ -35,11 +35,12 @@ model Quiz {
 }
 
 model Question {
-    id      String   @id @default(cuid())
-    text    String?
-    quiz    Quiz?    @relation(fields: [quizId], references: [id])
-    quizId  String?
-    answers Answer[]
+    id            String   @id @default(cuid())
+    text          String?
+    quiz          Quiz?    @relation(fields: [quizId], references: [id])
+    quizId        String?
+    correctAnswer String?
+    answers       Answer[]
 }
 
 model Answer {

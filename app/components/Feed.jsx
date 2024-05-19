@@ -2,6 +2,8 @@ import React from 'react'
 import Card from './Card'
 import prisma from '@/lib/prisma'
 
+import CardForm from "@/app/components/CardForm"
+
 async function getQuizzes()
 {
     const quizzes = await prisma.Quiz.findMany(
@@ -25,10 +27,11 @@ const Feed = async ({isLoggedIn}) => {
         <main className='overflow-y-scroll flex-1 flex-wrap h-screen pb-20'>
             
             {quizzes.map((quiz) => {
-                return <Card 
-                key={quiz.id}
-                isLoggedIn={isLoggedIn}
-                quiz = {quiz}/>
+
+
+                return (
+                <CardForm key={quiz.id} quiz={quiz} isLoggedIn={isLoggedIn}/>
+                )
             })}
             
             

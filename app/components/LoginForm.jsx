@@ -1,11 +1,21 @@
 "use client"
 import Link from "next/link"
 import { login } from "../actions/auth"
+import { useFormStatus } from "react-dom"
+import Loading from "./Loading"
 
 
 const LoginForm = () => {
+    const {pending} = useFormStatus()
+
+    if(pending){
+
+        return(
+            <Loading/>
+        ) 
+    }else{
   return (
-    <form action={login} className="flex-col  rounded-xl p-10 justify-center bg-base-200">
+    <main className="flex-col  rounded-xl p-10 justify-center bg-base-200">
       <h1 className="text-2xl mb-10 text-center">Login to LooQuiz</h1>
         <section className="flex-col">
             
@@ -31,8 +41,9 @@ const LoginForm = () => {
         <button className="btn-primary btn btn-square text-white w-full">Login</button>
         </section>
         <Link className="link link-primary underline"href="/signup">Create an account here.</Link>
-      </form>
+      </main>
   )
+}
 }
 
 export default LoginForm

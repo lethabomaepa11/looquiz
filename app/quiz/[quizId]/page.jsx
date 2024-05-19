@@ -1,70 +1,48 @@
-'use client'
-import Quiz from '@/app/components/Quiz'
-import TryQuizPrompt from '@/app/components/TryQuizPrompt'
-import Link from 'next/link'
-import { Router } from 'next/router'
-import {useState,useEffect} from 'react'
-import QuizData from '@/app/components/QuizData'
-import Timer from '@/app/components/Timer'
+import React from 'react'
+import QuizPages from '@/app/components/QuizPages'
+import { notFound } from 'next/navigation';
 
-
-const QuizView = () => {
-
-  const [view, setview] = useState(-1);
-
-  function handleContinue()
-  {
-    setview(prevView => 
-      {
-        console.log(prevView)
-        return (++prevView);
-      }
-    )
-  }
-  function prevClick()
-  {
-    setview(prevView => 
-      {
-        return (--prevView);
-      }
-    )
-  }
-
-  function displayModal(){
-    document.getElementById('my_modal_5').showModal();
-  }
-  
-  
-
-  return (
-    <div className='flex justify-center items-center'>
-      
-      
-      <div className='w-full md:w-2/4 flex-col justify-between items-center'>
-      {view == -1 && <TryQuizPrompt onClick={handleContinue}/>}
-        {view >= 0 && <Timer time={1}
-        displayModal={displayModal}/>}
-        {(view >= 0) && <Quiz view={view}
-        onClick={handleContinue}
-        prev={prevClick}
-        displayModal={displayModal}/>}
-      </div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">You have completed this quiz!</h3>
-          <p className="py-4">Click the button below to close</p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <Link className="btn btn-square" href="/">Close</Link>
-            </form>
-          </div>
-        </div>
-      </dialog>
-    </div>
-
+async function getQuiz(params)
+{
+  const quiz = await prisma.Quiz.findUnique(
+    {
+      where: {id: params.quizId},
+      include: {author: true}
+    }
   )
+  if(quiz != null){
+
+    return quiz;
+  }
+  else{
+    return null;
+  }
 }
 
-export default QuizView
+async function getQuestions(quizId){
+  const questions = await prisma.Question.findMany(
+    {
+      where: {quizId: quizId},
+      include: {answers: true}
+    }
+  )
+  return questions
+}
+
+
+const Quiz = async ({params}) => {
+  const quiz = await getQuiz(params)
+  
+  if(quiz == null){
+      notFound()
+  }
+  else{
+    const questions = await getQuestions(quiz.id)
+  return (
+    <QuizPages
+    quiz={quiz}
+    questions={questions}/>
+  )}
+}
+
+export default Quiz

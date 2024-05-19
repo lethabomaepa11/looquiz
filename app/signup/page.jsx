@@ -5,6 +5,7 @@ import { Profile } from "@/lib/session";
 
 import { redirect } from "next/navigation";
 import Signup from "@/app/components/Signup"
+import { signup } from "../actions/auth";
 
 
 
@@ -32,7 +33,10 @@ async function Signupa() {
         alt="logo"/>
 
     <div className="flex min-h-screen flex-col items-center lg:items-end justify-center mr-0 lg:mr-20">
-      <Signup/>
+      <form action={signup}>
+        <Signup/>
+      </form>
+      
     </div>
     </main>
   )

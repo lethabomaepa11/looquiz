@@ -12,3 +12,8 @@ export async function logout(){
    // console.log(session.username)
     redirect("/login")
 }
+
+export async function prevent(e)
+{
+    e.preventDefault();
+}
