@@ -83,7 +83,7 @@ export async function login(formData)
         }
         else
         {
-            console.log(`Wrong credentials for login using ${email}`)
+            //console.log(`Wrong credentials for login using ${email}`)
         }
     }
 }
