@@ -31,7 +31,7 @@ export async function signup(formData)
     
     const username = formData.get('username');
     const password = formData.get('password');
-    if(String(email).includes("@")){
+    if(String(email).includes("@") && !String(username).includes(" ")){
         //check if the username exists
         
         if(await checkUsername(username) || await checkEmail(email)){
