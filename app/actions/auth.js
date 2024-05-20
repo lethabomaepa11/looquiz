@@ -41,7 +41,7 @@ export async function signup(formData)
         }
         else
         {
-            console.log("success")
+            console.log("account creation success!!")
             const encrypted_pass = await bcrypt.hash(password,10)
             //add to database
             await prisma.user.create({
@@ -57,7 +57,7 @@ export async function signup(formData)
         }
 
     }else{
-        console.log("Invalid email")
+        
     }
 }
 
@@ -71,7 +71,7 @@ export async function login(formData)
         console.log(await checkEmail(username))
         const data = await checkEmail(username);
         const dbPassword = data.password;
-        //console.log(dbPassword)
+        
         
         const passwordMatches = await bcrypt.compare(password,dbPassword)
         if(passwordMatches){
@@ -83,7 +83,7 @@ export async function login(formData)
         }
         else
         {
-
+            console.log(`Wrong credentials for login using ${email}`)
         }
     }
 }

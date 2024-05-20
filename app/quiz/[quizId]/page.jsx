@@ -1,6 +1,7 @@
 import React from 'react'
 import QuizPages from '@/app/components/QuizPages'
 import { notFound } from 'next/navigation';
+import prisma from '@/lib/prisma'
 
 async function getQuiz(params)
 {

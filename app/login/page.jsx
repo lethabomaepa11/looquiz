@@ -9,7 +9,6 @@ import { login } from "../actions/auth";
 
 async function Login() {
   if(await Profile() != undefined){
-    console.log(await Profile())
     redirect("/")
 }else{
   return (

@@ -20,8 +20,7 @@ const  page = async ({params}) => {
   
   const user = await getUser(params);
   const sessionUser = await Profile() == user.username?true:false;
-  console.log(user.username)
-  console.log(await Profile())
+ 
   
   if(user === null)
     {
@@ -29,7 +28,7 @@ const  page = async ({params}) => {
     }
     else{
 
-  console.log(user)
+
   return (
     <div className='md:flex md:justify-around'>
       <main className='flex-col md:w-2/4'>

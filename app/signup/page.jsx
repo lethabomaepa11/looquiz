@@ -17,7 +17,6 @@ export const metadata = {
 
   
 async function Signupa() {
-  console.log(await Profile())
   if(await Profile() != undefined){
       redirect("/")
   }else{

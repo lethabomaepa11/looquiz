@@ -7,9 +7,7 @@ import { getIronSessionData } from "@/lib/session";
 export async function logout(){
     const session = await getIronSessionData();
     session.username = "me"
-    //console.log(session.username)
     session.destroy();
-   // console.log(session.username)
     redirect("/login")
 }
 
