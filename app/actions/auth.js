@@ -6,7 +6,7 @@ import { Profile } from '../../lib/session';
 import { redirect } from 'next/navigation';
 import bcrypt from 'bcrypt';
 import { revalidatePath } from 'next/cache';
-
+import { generateRandomId } from './actions';
 
 async function checkUsername(username)
 {
@@ -86,4 +86,115 @@ export async function login(formData)
             //console.log(`Wrong credentials for login using ${email}`)
         }
     }
+}
+
+
+export async function publishQuizToDb(quiz,formData)
+{
+    //fetch the userId to relate the quiz to
+    //quiz => object of 2 => quizData && questions
+    console.log(quiz)
+    const quizData = quiz.quizData
+    const questions = quiz.questions
+
+    const userId = prisma.User.findUnique({
+        where: {username: await Profile()}
+    })
+
+    //add to database, create quiz => create question and answer
+    await prisma.Quiz.create({
+        data:
+        {
+            topic: quizData.topic,
+            description: quizData.description,
+            authorId: userId,
+            timeLimit: Number(quizData.timeLimit),
+            numQuestions: Number(quizData.numQuestions),
+            questions: {
+                create: questions.map((question) =>
+                ({
+                    text: question.text,
+                    correctAnswer: question.correct_answer,
+                    answers: {
+                        create: {
+                            a: question.answers.a,
+                            b: question.answers.b,
+                            c: question.answers.c,
+                            d: question.answers.d,
+                        }
+                    }
+                }))
+            }
+
+        }
+    })
+    redirect(`/${await Profile()}`)
+
+}
+
+export async function quizToDb(quiz)
+{
+    const userId = await prisma.User.findUnique({
+        where: {username: await Profile()}
+    })
+
+    const quizId = await generateRandomId(20,userId.id)
+    await prisma.Quiz.create({
+        data:
+        {
+            id: quizId,
+            topic: quiz.topic,
+            description: quiz.description,
+            //authorId: userId,
+            timeLimit: Number(quiz.timeLimit),
+            numQuestions: Number(quiz.numQuestions),
+            author:
+            {
+                connect:{id: userId.id}
+            }
+        }
+    })
+    //connect the quiz to the user
+    
+    return quizId;
+}
+
+export async function questionToDb(question)
+{
+    const questionId = await generateRandomId(20,question.quizId)
+    await prisma.Question.create({
+        data:
+        {
+            id: questionId,
+            text: question.text,
+            correctAnswer: question.correct_answer,
+            //quizId: question.quizId,
+            quiz:
+            {
+                connect:{id: question.quizId}
+            }
+        }
+    })
+    return questionId;
+}
+
+export async function answerToDb(answer)
+{
+    const id = await generateRandomId(20,answer.questionId)
+    await prisma.Answer.create({
+        data:
+        {
+            id: id,
+            a: answer.a,
+            b: answer.b,
+            c: answer.c,
+            d: answer.d,
+            //questionId: answer.questionId,
+            question:
+            {
+                connect:{id: answer.questionId}
+            }
+        }
+    })
+    redirect("/")
 }

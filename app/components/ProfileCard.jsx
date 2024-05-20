@@ -6,7 +6,7 @@ import { IoMdArrowRoundBack } from "react-icons/io"
 import { logout } from "@/app/actions/actions"
 
 
-const ProfileCard = ({username,email,sessionUser}) => {
+const ProfileCard = ({username,email,sessionUser,quizzes,isLoggedIn}) => {
   //console.log(username)
   return (
     <div className='w-full md:bg-base-300 md:ml-5 card mt-3 md:py-5 h-fit'>
@@ -33,19 +33,19 @@ const ProfileCard = ({username,email,sessionUser}) => {
           <div className='flex-col items-center w-3/4 max-w-screen-sm'>
             
             <div className='flex flex-row-reverse items-end justify-around'>
-              <label>0 <p>Quizzes</p></label>
+              <label>{quizzes} <p>Quizzes</p></label>
               <label>5 <p>Followers</p></label>
               <label>11 <p>Following</p></label>
             </div>
           </div>
         </div>
-        <section className='w-2/5'>
-          <Link href={`mailto:${email}`}  className='mt-10 ml-3 md:ml-5 text-sm hover:text-blue-50 hover:underline'>{email}</Link>
+        <section className='w-full justify-center items-center'>
+          <Link href={`mailto:${email}`}  className='mt-10 ml-10 w-full text-sm hover:text-blue-50 hover:underline'>{email}</Link>
         </section>
         <div className='flex pl-5 w-full mt-5 gap-10'>
         {!sessionUser?
         
-          <button className='btn btn-primary text-white px-10'>Follow</button>
+          <Link href={isLoggedIn ? `follow` :"/login"} className='btn btn-primary text-white px-10'>{isLoggedIn?"Follow":"Login to follow"}</Link>
           :
           <section>
           <Link href='/create' className="btn btn-primary text-white">

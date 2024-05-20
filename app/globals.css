@@ -6,9 +6,7 @@
 html {
   scroll-behavior: smooth;
 }
-body {
-  background-image: url("/public/looquix.png");
-}
+
 
 @layer utilities {
   .text-balance {

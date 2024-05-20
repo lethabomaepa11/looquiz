@@ -15,3 +15,15 @@ export async function prevent(e)
 {
     e.preventDefault();
 }
+
+export async function generateRandomId(length,id) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    const idLength = id.length;
+    for (let i = 0; i < (length/2); i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        result += id.charAt(Math.floor(Math.random() * idLength))
+    }
+    return result;
+}

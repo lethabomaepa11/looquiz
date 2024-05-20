@@ -1,10 +1,9 @@
 'use client'
 import Link from 'next/link'
 import {useState,useEffect} from 'react'
-import CreateTopic from '../components/CreateTopic'
-import PublishQuiz from '../components/PublishQuiz'
-import CreateQuestions from '../components/CreateQuestions'
-import { quizToDb,questionToDb,answerToDb } from '../actions/auth'
+import CreateTopic from './CreateTopic'
+import PublishQuiz from './PublishQuiz'
+import CreateQuestions from './CreateQuestions'
 
 class questionData
     {
@@ -100,7 +99,7 @@ const Create = () => {
 
     function addQuestion(form_values)
     {
-      //adds a question to the array held in the state for later usage or submission to database
+      //adds a question to the array held in the state for later usage or submission to api or database
       const newQuestion = new questionData();
       newQuestion.id = question-1;
       newQuestion.text = form_values.question;
@@ -112,46 +111,10 @@ const Create = () => {
 
     function publishQuiz()
     {
-      console.log(quizData)
-      const qtD = quizToDb.bind(null,quizData)
-      const quizId = qtD()
-      let qID = null;
-
-      quizId.then(result => {console.log(result)
-        qID = result
-        //send the questions now
-        questions.map(question => {
-            const data = {text: question.text,
-              correct_answer: question.correct_answer,
-              quizId: qID
-            }
-            const qTDb = questionToDb.bind(null,data)
-            let questionId = null;
-            qTDb().then(res => 
-              {
-                //console.log(res)
-                //console.log(question.answers)
-                let dt = {
-                  a: question.answers.a,
-                  b: question.answers.b,
-                  c: question.answers.c,
-                  d: question.answers.d,
-                  questionId: res
-                }
-                //console.log(dt)
-                const aTdB = answerToDb.bind(null,dt)
-                //console.log(question.answers)
-                aTdB()
-              }
-            )
-        })
-      })
-      //console.log(questions.map(question => question.answers))
-
-    
+      //sends the quiz data and questions array as one object to the api or database
+      console.log(questions);
     }
-    
-    
+
     
   return (
     <div className='h-screen md:h-full w-full  bg-base-300  md:flex-col md:justify-center md:items-center'>
@@ -174,7 +137,7 @@ const Create = () => {
         {
           (question==0) || ((question) < Number(quizData.numQuestions))?
             <button className="btn-primary btn btn-square text-white w-full mt-5">Continue to Question {question+1}</button>//displayed on every question and first component
-              :<button id="publish" className="btn-primary btn btn-square text-white w-full mt-5">Publish Quiz</button>//displayed at the last question and component
+              :<button className="btn-primary btn btn-square text-white w-full mt-5">Publish Quiz</button>//displayed at the last question and component
         }
     
         </section>

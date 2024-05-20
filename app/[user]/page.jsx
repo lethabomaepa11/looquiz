@@ -22,6 +22,15 @@ async function getUser(params)
   }
 }
 
+async function getQuizzes(userId)
+{
+  //fetches all the quizzes created by this user
+  const quizzes = await prisma.Quiz.findMany({
+    where: {authorId: userId}
+  })
+  return quizzes
+}
+
 const  page = async ({params}) => {
   
   const user = await getUser(params);
@@ -34,7 +43,8 @@ const  page = async ({params}) => {
     }
     else{
       const sessionUser = await Profile() == user.username?true:false;
-
+      const quizzes = await getQuizzes(user.id)
+      let isLoggedIn = await Profile() != undefined?true:false;
 
   return (
     <div className='md:flex md:justify-around'>
@@ -42,7 +52,9 @@ const  page = async ({params}) => {
         <ProfileCard
         username = {user.username}
         email = {user.email}
-        sessionUser={sessionUser}/>
+        quizzes={quizzes.length}
+        sessionUser={sessionUser}
+        isLoggedIn={isLoggedIn}/>
         <div className='card md:w-full md:ml-5 bg-base-200  mt-3 p-5'>
         <h1 className='text-white font-bold'>Profile Info</h1>
       </div>
@@ -50,8 +62,21 @@ const  page = async ({params}) => {
       <div className='card md:w-2/5 h-screen bg-base-200 mt-3 p-5 '>
         <h1 className='text-white font-bold'>Quizzes</h1>
         <section className='overflow-y-auto w-full'>
-          <ProfileQuizCard
-          sessionUser={sessionUser}/>
+        
+             
+              {quizzes.length > 0 ? quizzes.map((quiz) => {
+                return (
+                <ProfileQuizCard
+                key={quiz.id} 
+                sessionUser={sessionUser}
+                isLoggedIn={isLoggedIn}
+                quiz={quiz}/>
+                )
+            }): <div className='flex justify-center items-center w-full h-full'>
+            <div className="swap-off">Nothing to see here...🥶</div>
+            </div>
+            }
+        
         </section>
         
       </div>

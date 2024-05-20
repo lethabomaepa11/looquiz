@@ -1,13 +1,19 @@
 import React from 'react'
+//import { Profile } from '@/lib/session'
+import { redirect } from 'next/navigation'
 
-const CreateTopic = () => {
+const  CreateTopic = () => {
+
+    /*if(await Profile() == undefined){
+        redirect("/login")
+    }else{*/
   return (
     <div>
       <label>
             <div className="label">
                 <span className="label-text text-white">Topic</span>
             </div>
-            <input id="topic" name="topic" type="text" placeholder="e.g Javascript basics" className="inputs input input-bordered w-full" />
+            <input required id="topic" name="topic" type="text" placeholder="e.g Javascript basics" className="inputs input input-bordered w-full" />
             <div className="label">
                 <span className="label-text-alt text-info">Required</span>
             </div>
@@ -16,7 +22,7 @@ const CreateTopic = () => {
             <div className="label">
                 <span className="label-text text-white">Number of questions</span>
             </div>
-            <input id="numQuestions" name="numQuestions" type="number" placeholder="e.g 11" className="inputs input input-bordered w-full" />
+            <input required id="numQuestions" name="numQuestions" type="number" placeholder="e.g 11" className="inputs input input-bordered w-full" />
             <div className="label">
                 <span className="label-text-alt text-info">Required</span>
             </div>
@@ -25,7 +31,7 @@ const CreateTopic = () => {
             <div className="label">
                 <span className="label-text text-white">Time limit (mins)</span>
             </div>
-            <input id="timeLimit" name="timeLimit" type="number" placeholder="e.g 2" className="inputs input input-bordered w-full" />
+            <input required  id="timeLimit" name="timeLimit" type="number" placeholder="e.g 2" className="inputs input input-bordered w-full" />
             <div className="label">
                 <span className="label-text-alt text-info">Enter the time limit or leave blank</span>
             </div>
@@ -43,5 +49,6 @@ const CreateTopic = () => {
     </div>
   )
 }
+//}
 
 export default CreateTopic

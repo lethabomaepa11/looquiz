@@ -1,15 +1,13 @@
-//'use client'
+
 import Image from "next/image";
 import Header from "./components/Header";
-//import {useState, useEffect} from "react";
 import SideNav from "./components/SideNav";
 import Feed from "./components/Feed";
 import { Profile } from "@/lib/session";
 
 
 export default async function Home() {
-  //const [isVisible, setisVisible] = useState(false);
-  //const [isLoggedIn, setisLoggedIn] = useState(true)
+ 
   let isLoggedIn = await Profile() != undefined?true:false;
   let isVisible = false;
 

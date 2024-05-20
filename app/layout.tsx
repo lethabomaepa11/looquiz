@@ -9,6 +9,9 @@ const poppins = Roboto({ weight:"400",subsets:["latin"] });
 export const metadata: Metadata = {
   title: "LooQuiz: Quiz App",
   description: "Quiz App",
+  icons: {
+    icon: '/favicon.png', // /public path
+  },
 };
 
 export default function RootLayout({
@@ -18,6 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      
       <body className={poppins.className}>
         {children}
         </body>
