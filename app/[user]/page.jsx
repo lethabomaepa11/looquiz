@@ -13,7 +13,13 @@ async function getUser(params)
     }
   )
 
-  return user;
+  if(user != null){
+
+    return user;
+  }
+  else{
+    return null;
+  }
 }
 
 const  page = async ({params}) => {
