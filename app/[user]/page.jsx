@@ -25,7 +25,7 @@ async function getUser(params)
 const  page = async ({params}) => {
   
   const user = await getUser(params);
-  const sessionUser = await Profile() == user.username?true:false;
+  
  
   
   if(user == null)
@@ -33,6 +33,7 @@ const  page = async ({params}) => {
       notFound()
     }
     else{
+      const sessionUser = await Profile() == user.username?true:false;
 
 
   return (
