@@ -22,7 +22,7 @@ const  page = async ({params}) => {
   const sessionUser = await Profile() == user.username?true:false;
  
   
-  if(user === null)
+  if(user == null)
     {
       notFound()
     }
