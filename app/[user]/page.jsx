@@ -23,16 +23,16 @@ async function getUser(params)
   }
 }
 
-export const getQuizzes = cache(async (userId) =>
+export const getQuizzes = async (userId) =>
 {
   //fetches all the quizzes created by this user
   const quizzes = await prisma.Quiz.findMany({
     where: {authorId: userId}
   })
   return quizzes
-})
+}
 
-export const revalidate = 100
+
 
 const  page = async ({params}) => {
   
