@@ -6,7 +6,7 @@ import PublishQuiz from '../components/PublishQuiz'
 import CreateQuestions from '../components/CreateQuestions'
 import { quizToDb,questionToDb,answerToDb } from '../actions/auth'
 import Loading from '../components/Loading'
-import UserReload from "@/app/components/UserReload"
+//import UserReload from "@/app/components/UserReload"
 import { redirect, useRouter } from 'next/navigation'
 
 class questionData
@@ -123,7 +123,7 @@ const Create = () => {
       const quizId = qtD()
       let qID = null;
 
-      quizId.then(result => {console.log(result)
+      quizId.then(result => {//console.log(result)
         qID = result
         if(result){
         //send the questions now
@@ -155,7 +155,7 @@ const Create = () => {
       }
       else
       {
-        alert("You have to be logged in to be able to create a quiz!!")
+        window.alert("You have to be logged in to be able to create a quiz!!")
         router.push("/login")
       }
       })
@@ -163,7 +163,7 @@ const Create = () => {
 
     
     }
-    UserReload()
+    //UserReload()
     
     if(loading){
       return (<div className='w-screen h-screen justify-center items-center'>

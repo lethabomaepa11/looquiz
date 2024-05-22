@@ -38,9 +38,7 @@ export async function signup(formData)
         
         if(await checkUsername(username) || await checkEmail(email)){
             //the username or email already exists
-            //console.log(await checkEmail(email))
-            //redirect("/signup")
-            //alert("Email or username already exists!")
+            
             console.log("Email or username already exists")
         }
         else
