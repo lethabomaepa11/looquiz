@@ -23,7 +23,7 @@ async function getUser(params)
   }
 }
 
-export const getQuizzes = async (userId) =>
+const getQuizzes = async (userId) =>
 {
   //fetches all the quizzes created by this user
   const quizzes = await prisma.Quiz.findMany({
