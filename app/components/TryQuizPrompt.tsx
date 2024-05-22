@@ -2,6 +2,7 @@ import Link from "next/link"
 import ContinueBtn from "./ContinueBtn"
 
 const TryQuizPrompt = ({onClick,quiz}: any) => {
+  
   return (
     <div className="card  w-full bg-base-100  md:m-5">
         
@@ -13,7 +14,8 @@ const TryQuizPrompt = ({onClick,quiz}: any) => {
         <div className="card-body">
         
             <Link href={`/${quiz.author.username}`} className='text-xs text-slate-100 hover:underline'>{quiz.author.username}</Link>
-            <p className='text-sm'>Click <b className="text-white">Continue</b> to attempt this quiz.{/**if this is timed quiz, it'll tell here */}
+        
+            <p className='text-sm'>{quiz.numQuestions} Question{quiz.numQuestions>1&&"s"}<br/>Click <b className="text-white">Continue</b> to attempt this quiz.{/**if this is timed quiz, it'll tell here */}
             This is a timed Quiz limited to <b className="text-white">{quiz.timeLimit} minute</b>, should <b className="text-white">{quiz.timeLimit} minute</b> pass, you will be redirected to the homepage or the starting point
             and your work will be automatically submitted and graded</p>
             <div className="card-actions w-full">

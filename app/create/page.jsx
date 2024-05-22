@@ -5,6 +5,9 @@ import CreateTopic from '../components/CreateTopic'
 import PublishQuiz from '../components/PublishQuiz'
 import CreateQuestions from '../components/CreateQuestions'
 import { quizToDb,questionToDb,answerToDb } from '../actions/auth'
+import Loading from '../components/Loading'
+import UserReload from "@/app/components/UserReload"
+import { redirect, useRouter } from 'next/navigation'
 
 class questionData
     {
@@ -30,8 +33,10 @@ class questionData
     }
 
 const Create = () => {
+    const router = useRouter()
     const isBrowser = () => typeof window !== 'undefined';
     const [question, setQuestion] = useState(0)
+    const [loading,setLoading] = useState(false)
     const [questions, setQuestions] = useState([])//empty array of questionData objects
     const [quizData,setQuizData] = useState({
       topic: "",
@@ -112,13 +117,15 @@ const Create = () => {
 
     function publishQuiz()
     {
-      console.log(quizData)
+      //display a loading state
+      setLoading(true)
       const qtD = quizToDb.bind(null,quizData)
       const quizId = qtD()
       let qID = null;
 
       quizId.then(result => {console.log(result)
         qID = result
+        if(result){
         //send the questions now
         questions.map(question => {
             const data = {text: question.text,
@@ -126,7 +133,7 @@ const Create = () => {
               quizId: qID
             }
             const qTDb = questionToDb.bind(null,data)
-            let questionId = null;
+            //let questionId = null;
             qTDb().then(res => 
               {
                 //console.log(res)
@@ -145,14 +152,24 @@ const Create = () => {
               }
             )
         })
+      }
+      else
+      {
+        alert("You have to be logged in to be able to create a quiz!!")
+        router.push("/login")
+      }
       })
       //console.log(questions.map(question => question.answers))
 
     
     }
+    UserReload()
     
-    
-    
+    if(loading){
+      return (<div className='w-screen h-screen justify-center items-center'>
+        <Loading/>
+      </div>)
+    }else{
   return (
     <div className='h-screen md:h-full w-full  bg-base-300  md:flex-col md:justify-center md:items-center'>
       <h1 className='text-white text-2xl font-bold pt-3 md:pt-8'>Create A Quiz</h1>
@@ -181,6 +198,7 @@ const Create = () => {
       </form>
     </div>
   )
+}
 }
 
 export default Create

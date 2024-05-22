@@ -4,6 +4,9 @@ import Header from "./components/Header";
 import SideNav from "./components/SideNav";
 import Feed from "./components/Feed";
 import { Profile } from "@/lib/session";
+import { Suspense } from "react";
+import Loading from "./components/Loading";
+import LoadingQuiz from "./components/LoadingQuiz";
 
 
 export default async function Home() {
@@ -15,6 +18,7 @@ export default async function Home() {
     setisVisible(prevIsVisible => {return !prevIsVisible})
   }*/
   return (
+    <Suspense fallback={<LoadingQuiz/>}>
     <main className="min-h-screen flex-col justify-between bg-base-300">
       {/*main page/homepage*/}
       <Header 
@@ -31,5 +35,6 @@ export default async function Home() {
       </section>
       
     </main>
+    </Suspense>
   );
 }

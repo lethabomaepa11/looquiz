@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/create/page.jsx", "app/components/QuizInfo.jsx", "app/quiz/[quizId]/page.jsx", "app/components/Timer.jsx", "app/components/Feed.jsx", "app/components/Card.jsx", "app/[user]/page.jsx", "app/components/ProfileCard.jsx", "app/page.jsx", "app/signup/page.jsx", "app/login/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/create/page.jsx", "app/components/QuizInfo.jsx", "app/quiz/[quizId]/page.jsx", "app/components/Timer.jsx", "app/components/Feed.jsx", "app/components/Card.jsx", "app/[user]/page.jsx", "app/components/ProfileCard.jsx", "app/page.jsx", "app/signup/page.jsx", "app/login/page.jsx", "app/components/ProfileQuizCard.jsx"],
   "exclude": ["node_modules"]
 }

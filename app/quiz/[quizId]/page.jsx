@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import QuizPages from '@/app/components/QuizPages'
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma'
+import LoadingQuiz from "@/app/components/LoadingQuiz"
+
 
 async function getQuiz(params)
 {
@@ -32,6 +34,7 @@ async function getQuestions(quizId){
 
 
 const Quiz = async ({params}) => {
+  
   const quiz = await getQuiz(params)
   
   if(quiz == null){
@@ -40,9 +43,12 @@ const Quiz = async ({params}) => {
   else{
     const questions = await getQuestions(quiz.id)
   return (
-    <QuizPages
-    quiz={quiz}
-    questions={questions}/>
+    <Suspense fallback={<LoadingQuiz/>}>
+        <QuizPages
+        quiz={quiz}
+        questions={questions}/>
+    </Suspense>
+    
   )}
 }
 

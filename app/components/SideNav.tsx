@@ -4,6 +4,9 @@ import { FaPlus } from "react-icons/fa6"
 import { BsInfo } from "react-icons/bs"
 import { FaGithub } from "react-icons/fa6"
 import { Profile } from "@/lib/session"
+import { MdOutlineLeaderboard } from "react-icons/md"
+import { BiMenu } from "react-icons/bi"
+import { GiHelp } from "react-icons/gi"
 
 
 
@@ -14,8 +17,8 @@ async function SideNav({isVisible} : any) {
     <div className={`${true?'flex':'hidden'} md:flex hidden`}>
       
       <ul className="menu  md:w-56 w-screen h-screen overflow-y-scroll">
-      <h1 className="text-2xl text-white font-bold">Menu</h1>
-        <li><Link href='/create'>Create Quiz</Link></li>
+      <h1 className="text-2xl text-white font-bold flex items-center">Menu</h1>
+        <li><Link href={user?"/create":'/login'}><FaPlus/>Create Quiz</Link></li>
         {/*
         <li>
           <details open>
@@ -26,10 +29,11 @@ async function SideNav({isVisible} : any) {
             </ul>
           </details>
         </li>*/}
-        <li><Link href={`/${user}`}>Profile</Link></li>
-        <li><a>Help</a></li>
-        <li><a>About</a></li>
-        <li><Link href="https://github.com/lethabomaepa11/looquiz" target="blank">Github</Link></li>
+        <li><Link href={user?`/${user}`:"/login"}><CgProfile/>Profile</Link></li>
+        <li><Link href={`/${user}`}><MdOutlineLeaderboard/>Rankings</Link></li>
+        <li><a><GiHelp/>Help</a></li>
+        <li><a><BsInfo/>About</a></li>
+        <li><Link href="https://github.com/lethabomaepa11/looquiz" target="blank"><FaGithub/>Github</Link></li>
     </ul>
     </div>
     <div className="btm-nav md:hidden z-40">
@@ -42,16 +46,12 @@ async function SideNav({isVisible} : any) {
     <span className="btm-nav-label">Profile</span>
   </Link>
   <Link href={user?"/create":"/login"}>
-    <FaPlus/>
-    <span className="btm-nav-label">Create Quiz</span>
+    <MdOutlineLeaderboard/>
+    <span className="btm-nav-label">Rankings</span>
   </Link>
   <Link href={"/"}>
     <BsInfo/>
     <span className="btm-nav-label">About</span>
-  </Link>
-  <Link href="https://github.com/lethabomaepa11/looquiz" target="blank">
-    <FaGithub/>
-    <span className="btm-nav-label">Github</span>
   </Link>
   </div>
     </>

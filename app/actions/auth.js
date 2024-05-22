@@ -29,15 +29,19 @@ export async function signup(formData)
 {
     const email = formData.get('email');
     
-    const username = formData.get('username');
+    let username = formData.get('username');
     const password = formData.get('password');
-    if(String(email).includes("@") && !String(username).includes(" ")){
+    if(String(email).includes("@")){
         //check if the username exists
+        String(username).includes(" ") && (username = String(username).replace(" ",""))
+        
         
         if(await checkUsername(username) || await checkEmail(email)){
             //the username or email already exists
-            console.log(await checkEmail(email))
-            redirect("/signup")
+            //console.log(await checkEmail(email))
+            //redirect("/signup")
+            //alert("Email or username already exists!")
+            console.log("Email or username already exists")
         }
         else
         {
@@ -57,7 +61,7 @@ export async function signup(formData)
         }
 
     }else{
-        
+        return ("Username must not have spaces!!")
     }
 }
 
@@ -134,11 +138,12 @@ export async function publishQuizToDb(quiz,formData)
 
 export async function quizToDb(quiz)
 {
+    if(await Profile() != undefined){
     const userId = await prisma.User.findUnique({
         where: {username: await Profile()}
     })
 
-    const quizId = await generateRandomId(20,userId.id)
+    const quizId = await generateRandomId(32,userId.id)
     await prisma.Quiz.create({
         data:
         {
@@ -158,10 +163,16 @@ export async function quizToDb(quiz)
     
     return quizId;
 }
+else
+{
+    return null;
+    
+}
+}
 
 export async function questionToDb(question)
 {
-    const questionId = await generateRandomId(20,question.quizId)
+    const questionId = await generateRandomId(32,question.quizId)
     await prisma.Question.create({
         data:
         {
@@ -180,7 +191,7 @@ export async function questionToDb(question)
 
 export async function answerToDb(answer)
 {
-    const id = await generateRandomId(20,answer.questionId)
+    const id = await generateRandomId(32,answer.questionId)
     await prisma.Answer.create({
         data:
         {

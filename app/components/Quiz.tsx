@@ -1,8 +1,7 @@
 import React from 'react'
 import quiz_data from './QuizData';
 import ContinueBtn from './ContinueBtn';
-import Link from 'next/link';
-import Timer from './Timer';
+
 
 
 

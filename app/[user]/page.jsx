@@ -4,6 +4,7 @@ import ProfileQuizCard from '../components/ProfileQuizCard'
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import { Profile } from '@/lib/session';
+import { cache } from 'react';
 
 async function getUser(params)
 {
@@ -22,14 +23,16 @@ async function getUser(params)
   }
 }
 
-async function getQuizzes(userId)
+export const getQuizzes = cache(async (userId) =>
 {
   //fetches all the quizzes created by this user
   const quizzes = await prisma.Quiz.findMany({
     where: {authorId: userId}
   })
   return quizzes
-}
+})
+
+export const revalidate = 100
 
 const  page = async ({params}) => {
   

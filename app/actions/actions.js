@@ -20,10 +20,22 @@ export async function generateRandomId(length,id) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
+    id = id? id : "null"
     const idLength = id.length;
     for (let i = 0; i < (length/2); i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
         result += id.charAt(Math.floor(Math.random() * idLength))
     }
+    result = "q"+result;
     return result;
+}
+
+export async function deleteQuiz(quizId)
+{
+    await prisma.Quiz.delete(
+        {
+            where: {id: quizId}
+        }
+    )
+    
 }

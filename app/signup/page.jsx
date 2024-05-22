@@ -20,6 +20,7 @@ async function Signupa() {
   if(await Profile() != undefined){
       redirect("/")
   }else{
+    
 
   return (
 
