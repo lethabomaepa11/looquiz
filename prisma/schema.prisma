@@ -11,27 +11,29 @@ datasource db {
 }
 
 model User {
-    id        String      @id @default(cuid())
-    username  String?     @unique
-    password  String?
-    email     String?     @unique
-    createdAt DateTime    @default(now()) @map(name: "created_at")
-    updatedAt DateTime    @updatedAt @map(name: "updated_at")
-    quizzes   Quiz[]
-    followers Followers[]
+    id            String         @id @default(cuid())
+    username      String?        @unique
+    password      String?
+    email         String?        @unique
+    createdAt     DateTime       @default(now()) @map(name: "created_at")
+    updatedAt     DateTime       @updatedAt @map(name: "updated_at")
+    quizzes       Quiz[]
+    quizResponses QuizResponse[]
+    followers     Followers[]
 
     @@map(name: "users")
 }
 
 model Quiz {
-    id           String     @id @unique
+    id           String         @id @unique
     topic        String
     description  String?
-    author       User?      @relation(fields: [authorId], references: [id])
+    author       User?          @relation(fields: [authorId], references: [id])
     authorId     String?
     timeLimit    Int?
     numQuestions Int?
     questions    Question[]
+    responses    QuizResponse[]
 }
 
 model Question {
@@ -58,4 +60,23 @@ model Followers {
     follower   User?   @relation(fields: [followerId], references: [id])
     userId     String?
     followerId String?
+}
+
+model QuizResponse {
+    id             String                @id @unique
+    quiz           Quiz?                 @relation(fields: [quizId], references: [id])
+    quizId         String?
+    user           User?                 @relation(fields: [userId], references: [id])
+    userId         String?
+    answers        QuizResponseAnswers[]
+    quizResponseId String?
+    submittedAt    DateTime              @default(now()) @map(name: "submitted_at")
+}
+
+model QuizResponseAnswers {
+    id           String        @id @default(cuid())
+    quizResponse QuizResponse? @relation(fields: [responseId], references: [id])
+    responseId   String?
+    question     Int?
+    answer       String?
 }

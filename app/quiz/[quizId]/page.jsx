@@ -22,7 +22,7 @@ async function getQuiz(params)
   }
 }
 
-async function getQuestions(quizId){
+export async function getQuestions(quizId){
   const questions = await prisma.Question.findMany(
     {
       where: {quizId: quizId},

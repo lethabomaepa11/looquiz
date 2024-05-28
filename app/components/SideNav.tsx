@@ -32,7 +32,7 @@ async function SideNav({isVisible} : any) {
         <li><Link href={user?`/${user}`:"/login"}><CgProfile/>Profile</Link></li>
         <li><Link href={`/${user}`}><MdOutlineLeaderboard/>Rankings</Link></li>
         <li><a><GiHelp/>Help</a></li>
-        <li><a><BsInfo/>About</a></li>
+        <li><Link href="/about"><BsInfo/>About</Link></li>
         <li><Link href="https://github.com/lethabomaepa11/looquiz" target="blank"><FaGithub/>Github</Link></li>
     </ul>
     </div>
@@ -49,7 +49,7 @@ async function SideNav({isVisible} : any) {
     <MdOutlineLeaderboard/>
     <span className="btm-nav-label">Rankings</span>
   </Link>
-  <Link href={"/"}>
+  <Link href={"/about"}>
     <BsInfo/>
     <span className="btm-nav-label">About</span>
   </Link>

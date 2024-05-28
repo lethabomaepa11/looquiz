@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import { Profile } from '@/lib/session';
 import { cache } from 'react';
+import Link from 'next/link';
+import ProfileResponses from "@/app/components/ProfileResponses"
 
 async function getUser(params)
 {
@@ -32,6 +34,18 @@ const getQuizzes = async (userId) =>
   return quizzes
 }
 
+const getMyResponses = async(myId) =>{
+  //fetches all my(user)'s responses to quizzes
+  const responses = await prisma.QuizResponse.findMany(
+    {
+      where: {userId: myId},
+      include: {quiz: true}
+    }
+  )
+
+  console.log(responses)
+  return responses;
+}
 
 
 const  page = async ({params}) => {
@@ -48,19 +62,30 @@ const  page = async ({params}) => {
       const sessionUser = await Profile() == user.username?true:false;
       const quizzes = await getQuizzes(user.id)
       let isLoggedIn = await Profile() != undefined?true:false;
+      const responses = await getMyResponses(user.id)
 
   return (
-    <div className='md:flex md:justify-around'>
-      <main className='flex-col md:w-2/4'>
+    <div className='md:flex md:justify-around h-screen '>
+      <main className='flex-col md:w-2/4 h-full'>
         <ProfileCard
         username = {user.username}
         email = {user.email}
         quizzes={quizzes.length}
         sessionUser={sessionUser}
         isLoggedIn={isLoggedIn}/>
-        <div className='card md:w-full md:ml-5 bg-base-200  mt-3 p-5'>
-        <h1 className='text-white font-bold'>Profile Info</h1>
-      </div>
+        {sessionUser &&
+        <div className='card md:w-full md:ml-5 bg-base-200  mt-3 p-5 overflow-auto'>
+        <h1 className='text-white font-bold'>Your Response History</h1>
+        <div className='overflow-auto w-full h-72'>
+        {!responses.length > 0?<p>Nothing to see here...Try quizzes...</p>:
+          responses.map(response => {
+            return <ProfileResponses
+            key={response.id}
+            response={response}/>
+          })
+        }
+        </div>
+      </div>}
       </main>
       <div className='card md:w-2/5 h-screen bg-base-200 mt-3 p-5 '>
         <h1 className='text-white font-bold'>Quizzes</h1>

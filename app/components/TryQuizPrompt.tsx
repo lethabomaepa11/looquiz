@@ -25,7 +25,7 @@ const TryQuizPrompt = ({onClick,quiz}: any) => {
         </div>
       <div className='flex space-x-2 justify-center items-center'>
         <Link href="/" className='btn btn-square w-2/5 px-5 btn-error bottom-0 text-white'>Cancel</Link>
-        <ContinueBtn onClick={onClick}/>
+        <ContinueBtn/>
         {/*When the continue btn is clicked, re-render and show quizzes, until final quiz */}
       </div>
     
