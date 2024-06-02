@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import {config} from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false;
+import { Analytics } from "@vercel/analytics/react"
 
 const poppins = Roboto({ weight:"400",subsets:["latin"] });
 

@@ -20,14 +20,14 @@ const QuizView = ({quiz,questions}) => {
 
   function handleContinue(e)
   {
-    console.log("called")
+    //console.log("called")
     e.preventDefault()
     if(view>-1){
     const formData = new FormData(e.target);
     const form_values = Object.fromEntries(formData);
     
     form_values.answers != undefined && setResponses(prevResponses => [...prevResponses,(form_values.answers+`(q${view+1})`)])//to know which question this response is for
-    console.log(responses)
+    //console.log(responses)
     }
     //console.log(submit)
     if (submit) {
@@ -40,7 +40,7 @@ const QuizView = ({quiz,questions}) => {
           subResponse = subResponse.bind(null, response);
           subResponse().then(() => {
             sub++;
-            console.log(sub);
+            //console.log(sub);
             // Check if all responses are submitted
             if (sub >= responses.length) {
               // Redirect to the dynamic results page
@@ -53,7 +53,7 @@ const QuizView = ({quiz,questions}) => {
     
     (view+1)  == questions.length && displayModal()
     //submit = (view+1)  == questions.length?true:false
-    console.log(view)
+    //console.log(view)
     
     
     !((view+1) == questions.length) && (setview(prevView => 
