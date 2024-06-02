@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { getIronSession } from "iron-session"
 import { redirect } from "next/navigation";
 import { getIronSessionData, Profile } from "@/lib/session";
+import prisma from "@/lib/prisma";
 
 export async function logout(){
     const session = await getIronSessionData();
