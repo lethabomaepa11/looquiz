@@ -15,7 +15,7 @@ const ProfileCard = ({username,email,sessionUser,quizzes,isLoggedIn}) => {
             <IoMdArrowRoundBack
             size={34}
             color='white'
-            onClick={useRouter().back}/>
+            onClick={useRouter().push("/")}/>
             <h1 className=' text-white text-2xl font-bold  btn btn-ghost btn-square w-fit'>{username}</h1>
           </span>
         
